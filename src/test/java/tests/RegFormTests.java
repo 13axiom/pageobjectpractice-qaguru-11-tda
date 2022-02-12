@@ -1,11 +1,9 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.*;
