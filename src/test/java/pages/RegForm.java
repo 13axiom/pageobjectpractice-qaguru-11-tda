@@ -32,5 +32,10 @@ public class RegForm {
                     resultTable = $(".table-responsive");
 
     //actions
-
+    public void openPage() {
+        open("/automation-practice-form");
+        mainHeader.shouldHave(text("Practice Form"));
+        formName.shouldHave(text("Student Registration Form"));
+        buttonSubmit.shouldHave(text("Submit"));
+    }
 }

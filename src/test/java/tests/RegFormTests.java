@@ -40,10 +40,7 @@ public class RegFormTests {
 
     @Test
     void successFillPracticeForm() {
-        open("/automation-practice-form");
-        $(".main-header").shouldHave(text("Practice Form"));
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        $("#submit").shouldHave(text("Submit"));
+        regForm.openPage();
 
         $("#firstName").setValue("Vovan");
         $("#lastName").setValue("deMort");
@@ -55,11 +52,11 @@ public class RegFormTests {
         $(".react-datepicker__month-select").selectOption(3);
         $(".react-datepicker__year-select").selectOption("1999");
         $(".react-datepicker__day.react-datepicker__day--021").click();
-
         $("#subjectsInput").setValue("History").pressEnter();
         $("[for=hobbies-checkbox-2]").click();
         File file = new File("src/test/resources/img/cat_4_qaguru_11.jpeg");
         $("#uploadPicture").uploadFile(file);
+        scrollToPlace.scrollIntoView(true);
         $("#currentAddress").setValue("Main street,90210");
         $("#state").click();
         $(byText("Uttar Pradesh")).click();
