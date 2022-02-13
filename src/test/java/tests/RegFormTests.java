@@ -40,11 +40,11 @@ public class RegFormTests {
 
     @Test
     void successFillPracticeForm() {
-        regForm.openPage();
+        regForm.openPage()
+                .setFirstName(userName)
+                .setLastName(userSurnname)
+                .setEmail(userEmail);
 
-        $("#firstName").setValue("Vovan");
-        $("#lastName").setValue("deMort");
-        $("#userEmail").setValue("vmort@mailinataror.com");
         $("[for=gender-radio-1]").click();
         $("#userNumber").setValue("1234567890");
 
@@ -53,14 +53,7 @@ public class RegFormTests {
         $(".react-datepicker__year-select").selectOption("1999");
         $(".react-datepicker__day.react-datepicker__day--021").click();
 
-        $("#subjectsInput").setValue("Math").pressEnter();
-        sleep(3000);
-        $("#subjectsInput").clear(); //todo not work
-        sleep(5000);
-        $(".subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi.css-1hwfws3").click();
-        $("#subjectsInput").setValue("Hi");
-        $(byText("History")).click();
-
+        $("#subjectsInput").setValue("History").pressEnter();
         $("[for=hobbies-checkbox-2]").click();
         File file = new File("./src/test/resources/img/cat_4_qaguru_11.jpeg");
         $("#uploadPicture").uploadFile(file);

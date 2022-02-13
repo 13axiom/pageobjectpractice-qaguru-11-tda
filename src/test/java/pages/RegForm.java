@@ -32,10 +32,27 @@ public class RegForm {
                     resultTable = $(".table-responsive");
 
     //actions
-    public void openPage() {
+    public RegForm openPage() {
         open("/automation-practice-form");
         mainHeader.shouldHave(text("Practice Form"));
         formName.shouldHave(text("Student Registration Form"));
         buttonSubmit.shouldHave(text("Submit"));
+        return this;
     }
+
+    public RegForm setFirstName (String firstName) {
+        firstNameInput.setValue("Vovan");
+        return this;
+    }
+
+    public RegForm setLastName (String lastName) {
+        lastNameInput.setValue("deMort'");
+        return this;
+    }
+
+    public RegForm setEmail (String email) {
+        emailInput.setValue("vmort@mailinator.com");
+        return this;
+    }
+
 }
