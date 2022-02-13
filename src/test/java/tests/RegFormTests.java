@@ -52,9 +52,17 @@ public class RegFormTests {
         $(".react-datepicker__month-select").selectOption(3);
         $(".react-datepicker__year-select").selectOption("1999");
         $(".react-datepicker__day.react-datepicker__day--021").click();
-        $("#subjectsInput").setValue("History").pressEnter();
+
+        $("#subjectsInput").setValue("Math").pressEnter();
+        sleep(3000);
+        $("#subjectsInput").clear(); //todo not work
+        sleep(5000);
+        $(".subjects-auto-complete__value-container.subjects-auto-complete__value-container--is-multi.css-1hwfws3").click();
+        $("#subjectsInput").setValue("Hi");
+        $(byText("History")).click();
+
         $("[for=hobbies-checkbox-2]").click();
-        File file = new File("src/test/resources/img/cat_4_qaguru_11.jpeg");
+        File file = new File("./src/test/resources/img/cat_4_qaguru_11.jpeg");
         $("#uploadPicture").uploadFile(file);
         scrollToPlace.scrollIntoView(true);
         $("#currentAddress").setValue("Main street,90210");
