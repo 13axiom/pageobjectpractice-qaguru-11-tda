@@ -89,7 +89,6 @@ public class RegForm {
     }
 
     public RegForm chooseHobby(String hobby) {
-//        $("[for=hobbies-checkbox-2]").click();
         if (hobby == "Sports") {
             hobbySports.click();
         } else {
