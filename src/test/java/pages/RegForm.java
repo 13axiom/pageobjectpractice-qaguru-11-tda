@@ -6,6 +6,7 @@ import pages.components.CalendarComponent;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -33,7 +34,9 @@ public class RegForm {
             addressInput = $("#currentAddress"),
             stateChoice = $("#state"),
             cityChoice = $("#city"),
-            resultTable = $(".table-responsive");
+            resultHeader = $("#example-modal-sizes-title-lg"),
+            resultTable = $(".table-responsive"),
+            buttonClose = $("#closeLargeModal");
 
     //actions
     public RegForm openPage() {
@@ -128,6 +131,13 @@ public class RegForm {
         if (button == "Submit") {
             buttonSubmit.click();
         }
+        return this;
+    }
+
+    public RegForm checkDesignOfResult () {
+        resultHeader.shouldHave(text("Thanks for submitting the form"));
+        buttonClose.exists();
+        buttonClose.shouldHave(text("Close"));
         return this;
     }
 

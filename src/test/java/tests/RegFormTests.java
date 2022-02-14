@@ -31,9 +31,7 @@ public class RegFormTests {
             buttonSubmit = "Submit";
     int userBdayDay = 30;
 
-    SelenideElement scrollToPlace = $("#currentAddress"),
-                      resultHeader = $("#example-modal-sizes-title-lg"),
-                      resultTable = $(".table-responsive");
+    SelenideElement scrollToPlace = $("#currentAddress");
 
     @BeforeAll
     static void beforeAll() {
@@ -59,9 +57,9 @@ public class RegFormTests {
                 .chooseCity(userCity)
                 .clickButton(buttonSubmit);
 
-        resultHeader.shouldHave(text("Thanks for submitting the form"));
-        resultTable.shouldHave(text("Label"),text("Values"));
-        regForm.checkResult("Student Name",userName + " " + userSurnname)
+        regForm.checkDesignOfResult()
+                .checkResult("Label", "Values")
+                .checkResult("Student Name",userName + " " + userSurnname)
                 .checkResult("Student Email", userEmail)
                 .checkResult("Gender",userGender)
                 .checkResult("Mobile",userPhone)
