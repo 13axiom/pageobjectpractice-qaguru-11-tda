@@ -5,15 +5,14 @@ import pages.components.CalendarComponent;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RegForm {
     //components
-    CalendarComponent calendarComponent = new CalendarComponent();
+    private CalendarComponent calendarComponent = new CalendarComponent();
 
     //locators
     SelenideElement mainHeader = $(".main-header"),
@@ -22,11 +21,14 @@ public class RegForm {
             firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             emailInput = $("#userEmail"),
+            genderFiled = $("#genterWrapper"),
             genderMale = $("[for=gender-radio-1]"),
             genderFemale = $("[for=gender-radio-2]"),
             genderOther = $("[for=gender-radio-3]"),
             phoneNumberInput = $("#userNumber"),
+            bdayField = $(".react-datepicker__input-container"),
             subjectInput = $("#subjectsInput"),
+            hobbyField = $("#hobbiesWrapper"),
             hobbyReading = $("[for=hobbies-checkbox-2]"),
             hobbySports = $("[for=hobbies-checkbox-1]"),
             hobbyMusic = $("[for=hobbies-checkbox-3]"),
@@ -81,7 +83,7 @@ public class RegForm {
     }
 
     public RegForm setBirthDate(int day, String month, String year) {
-        $(".react-datepicker__input-container").click();
+        bdayField.click();
         calendarComponent.setDate(day, month, year);
         return this;
     }
@@ -134,16 +136,57 @@ public class RegForm {
         return this;
     }
 
-    public RegForm checkDesignOfResult () {
+    public RegForm checkDesignOfResult() {
         resultHeader.shouldHave(text("Thanks for submitting the form"));
-        buttonClose.exists();
+        buttonClose.should(exist);
         buttonClose.shouldHave(text("Close"));
         return this;
     }
 
     public RegForm checkResult(String fieldName, String value) {
-                resultTable.$(byText(fieldName))
+        resultTable.$(byText(fieldName))
                 .parent().shouldHave(text(value));
+        return this;
+    }
+
+    public RegForm scrollToElement(String element) {
+        switch (element) {
+            case "Name":
+                formName.scrollIntoView(true);
+                break;
+            case "Email":
+                emailInput.scrollIntoView(true);
+                break;
+            case "Gender":
+                genderFiled.scrollIntoView(true);
+                break;
+            case "Mobile":
+                phoneNumberInput.scrollIntoView(true);
+                break;
+            case "Date of Birth":
+                bdayField.scrollIntoView(true);
+                break;
+            case "Subjects":
+                subjectInput.scrollIntoView(true);
+                break;
+            case "Hobbies":
+                hobbyField.scrollIntoView(true);
+                break;
+            case "Picture":
+                uploadPictureField.scrollIntoView(true);
+                break;
+            case "Current Address":
+                addressInput.scrollIntoView(true);
+                break;
+            case "State and City":
+                stateChoice.scrollIntoView(true);
+                break;
+            case "Submit":
+                buttonSubmit.scrollIntoView(true);
+                break;
+            default:
+                break;
+        }
         return this;
     }
 }

@@ -28,10 +28,9 @@ public class RegFormTests {
             userCurrAddress = "Main street,90210",
             userState = "Uttar Pradesh",
             userCity = "Merrut",
-            buttonSubmit = "Submit";
+            buttonSubmit = "Submit",
+            placeForScroll = "Current Address";
     int userBdayDay = 30;
-
-    SelenideElement scrollToPlace = $("#currentAddress");
 
     @BeforeAll
     static void beforeAll() {
@@ -50,9 +49,9 @@ public class RegFormTests {
                 .setBirthDate(userBdayDay,userBdayMonth,userBdayYear)
                 .setSubject(userSubject)
                 .chooseHobby(userHobby)
-                .uploadPicture(userPictureUrl);
-        scrollToPlace.scrollIntoView(true);
-        regForm.setAddress(userCurrAddress)
+                .uploadPicture(userPictureUrl)
+                .scrollToElement(placeForScroll)
+                .setAddress(userCurrAddress)
                 .chooseState(userState)
                 .chooseCity(userCity)
                 .clickButton(buttonSubmit);
